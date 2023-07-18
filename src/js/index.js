@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const API_KEY = '38313802-233138be4ef65b6ec4f8e7621';
 
@@ -148,4 +150,8 @@ searchInput.addEventListener('input', () => {
   form.querySelector('button').disabled = !isFormValid;
 });
 
-const lightbox = new Notiflix.Lightbox('.lightbox-link');
+new SimpleLightbox('.lightbox-link', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
