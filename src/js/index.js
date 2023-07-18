@@ -34,21 +34,29 @@ async function fetchImages(query, page = 1) {
 }
 
 function createImageCard(image) {
-  const { webformatURL, largeImageURL, likes, views, comments, downloads } =
-    image;
+  const {
+    webformatURL,
+    largeImageURL,
+    likes,
+    views,
+    comments,
+    downloads,
+    tags,
+  } = image;
   const card = document.createElement('div');
   card.classList.add('photo-card');
   card.innerHTML = `
     <a href="${largeImageURL}" class="lightbox-link">
-      <img src="${webformatURL}" alt="Image" loading="lazy" />
-    </a>
+      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
     <div class="info">
       <p class="info-item"><b>Likes:</b> ${likes}</p>
       <p class="info-item"><b>Views:</b> ${views}</p>
       <p class="info-item"><b>Comments:</b> ${comments}</p>
       <p class="info-item"><b>Downloads:</b> ${downloads}</p>
     </div>
+    </a>
   `;
+  lightbox.refresh();
   return card;
 }
 
@@ -150,8 +158,7 @@ searchInput.addEventListener('input', () => {
   form.querySelector('button').disabled = !isFormValid;
 });
 
-new SimpleLightbox('.lightbox-link', {
-  captions: true,
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 100,
   captionsData: 'alt',
-  captionDelay: 250,
 });
