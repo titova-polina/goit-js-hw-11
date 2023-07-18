@@ -111,7 +111,6 @@ async function searchImages(query) {
     });
     toggleLoadMoreButton(true);
     showTotalImagesCount(totalHits);
-    Notiflix.Lightbox.refresh();
   } else {
     showNoImagesMessage();
   }
@@ -130,7 +129,6 @@ async function loadMoreImages() {
       toggleLoadMoreButton(false);
       showEndOfResultsMessage();
     }
-    Notiflix.Lightbox.refresh();
     scrollToNextResults();
   } else {
     toggleLoadMoreButton(false);
